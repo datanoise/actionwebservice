@@ -66,8 +66,8 @@ spec = Gem::Specification.new do |s|
   s.description = %q{Adds WSDL/SOAP and XML-RPC web service support to Action Pack}
   s.version = PKG_VERSION
 
-  s.author = "Leon Breedt"
-  s.email = "bitserf@gmail.com"
+  s.author = "Leon Breedt, Kent Sibilev"
+  s.email = "bitserf@gmail.com, ksibilev@yahoo.com"
   s.rubyforge_project = "aws"
   s.homepage = "http://www.rubyonrails.org"
 
