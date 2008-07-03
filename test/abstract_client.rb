@@ -164,7 +164,7 @@ module ClientTest
       @container = Container.new
       @clientlet = create_clientlet(@container)
       log = WEBrick::BasicLog.new(NullLogOut.new)
-      @server = WEBrick::HTTPServer.new(:Port => server_port, :Logger => log, :AccessLog => log)
+      @server = WEBrick::HTTPServer.new(:Port => server_port, :Logger => log, :AccessLog => [])
       @server.mount('/', @clientlet)
       @thr = Thread.new { @server.start }
       until @server.status == :Running; end

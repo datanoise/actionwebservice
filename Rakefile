@@ -34,8 +34,8 @@ SCHEMA_PATH = File.join(File.dirname(__FILE__), *%w(test fixtures db_definitions
 
 desc 'Build the MySQL test database'
 task :build_database do 
-  %x( mysqladmin  create actionwebservice_unittest )
-  %x( mysql  actionwebservice_unittest < #{File.join(SCHEMA_PATH, 'mysql.sql')} )
+  %x( mysqladmin -uroot create actionwebservice_unittest )
+  %x( mysql -uroot actionwebservice_unittest < #{File.join(SCHEMA_PATH, 'mysql.sql')} )
 end
 
 
@@ -44,6 +44,7 @@ Rake::RDocTask.new { |rdoc|
   rdoc.rdoc_dir = 'doc'
   rdoc.title    = "Action Web Service -- Web services for Action Pack"
   rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.options << '--charset' << 'utf-8'
   rdoc.template = "#{ENV['template']}.rb" if ENV['template']
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('CHANGELOG')
@@ -77,7 +78,7 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = true
   s.requirements << 'none'
   s.require_path = 'lib'
-  s.autorequire = 'action_web_service'
+  s.autorequire = 'actionwebservice'
 
   s.files = [ "Rakefile", "setup.rb", "README", "TODO", "CHANGELOG", "MIT-LICENSE" ]
   s.files = s.files + Dir.glob( "examples/**/*" ).delete_if { |item| item.match( /\.(svn|git)/ ) }
