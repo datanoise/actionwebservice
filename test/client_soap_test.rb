@@ -19,6 +19,8 @@ module ClientSoapTest
     rescue Exception => e
       $stderr.puts e.message
       $stderr.puts e.backtrace.join("\n")
+    ensure
+      ActiveRecord::Base.clear_active_connections!
     end
   end
 

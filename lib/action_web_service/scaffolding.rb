@@ -87,7 +87,6 @@ module ActionWebService
                 @method_return_value = @scaffold_method.cast_returns(obj)
               end
               @method_elapsed = bm.real
-              add_instance_variables_to_assigns
               reset_invocation_response
               render_invocation_scaffold 'result'
             end
@@ -102,16 +101,15 @@ module ActionWebService
                 @scaffold_service = @scaffold_container.services.find{ |x| x.name == params['service'] }
                 @scaffold_method = @scaffold_service.api_methods[params['method']]
               end
-              add_instance_variables_to_assigns
             end
 
             def render_invocation_scaffold(action)
               customized_template = "\#{self.class.controller_path}/#{action_name}/\#{action}"
               default_template = scaffold_path(action)
               if template_exists?(customized_template)
-                content = @template.render_file(customized_template)
+                content = @template.render(:file => customized_template)
               else
-                content = @template.render_file(default_template, false)
+                content = @template.render(:file => default_template)
               end
               @template.instance_variable_set("@content_for_layout", content)
               if self.active_layout.nil?
