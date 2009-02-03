@@ -71,7 +71,7 @@ module ActionWebService # :nodoc:
       end
     end
 
-    class SimpleActionPackRequest < ActionController::AbstractRequest # :nodoc:
+    class SimpleActionPackRequest < ActionController::Request # :nodoc:
       def initialize
         @env = {}
         @qparams = {}
