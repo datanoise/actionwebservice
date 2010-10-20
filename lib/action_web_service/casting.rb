@@ -75,7 +75,7 @@ module ActionWebService # :nodoc:
           when :int
             Integer(value)
           when :string
-            value.to_s
+            CGI::escapeHTML(value.to_s)
           when :base64
             if value.is_a?(ActionWebService::Base64)
               value
